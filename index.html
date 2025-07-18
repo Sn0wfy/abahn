@@ -3,13 +3,11 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Autobahnkarte mit Suche</title>
+  <title>Autobahnkarte mit Suche & Farben</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <!-- Leaflet Search CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search@2.9.7/dist/leaflet-search.min.css" />
 
   <style>
@@ -21,8 +19,6 @@
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <!-- Leaflet Search JS -->
   <script src="https://unpkg.com/leaflet-control-search@2.9.7/dist/leaflet-search.min.js"></script>
 
   <script>
@@ -32,7 +28,16 @@
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Beispielhafte GeoJSON-Daten (du kannst sie aus deiner Tabelle generieren)
+    // Markerfarbe nach SB
+    function getColor(sb) {
+      switch(sb) {
+        case 'Osnabrück': return 'red';
+        case 'Gelsenkirchen': return 'blue';
+        case 'Wuppertal': return 'green';
+        default: return 'gray';
+      }
+    }
+
     var geojsonFeatures = {
       "type": "FeatureCollection",
       "features": [
@@ -40,7 +45,8 @@
           "type": "Feature",
           "properties": {
             "name": "Allenstein",
-            "popup": "PWC Allenstein (A2)"
+            "popup": "PWC Allenstein (A2)",
+            "sb": "Gelsenkirchen"
           },
           "geometry": {
             "type": "Point",
@@ -51,7 +57,8 @@
           "type": "Feature",
           "properties": {
             "name": "Ahler Mark",
-            "popup": "PWC Ahler Mark (A31)"
+            "popup": "PWC Ahler Mark (A31)",
+            "sb": "Osnabrück"
           },
           "geometry": {
             "type": "Point",
@@ -62,6 +69,16 @@
     };
 
     var geoLayer = L.geoJSON(geojsonFeatures, {
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, {
+          radius: 8,
+          fillColor: getColor(feature.properties.sb),
+          color: "#000",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+        });
+      },
       onEachFeature: function (feature, layer) {
         layer.bindPopup(feature.properties.popup);
       }
@@ -72,7 +89,7 @@
       propertyName: 'name',
       marker: false,
       moveToLocation: function(latlng, title, map) {
-        map.setView(latlng, 14); 
+        map.setView(latlng, 14);
       }
     });
 
