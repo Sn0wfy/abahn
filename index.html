@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Autobahnkarte mit Tropfen-Markern & Suche</title>
+  <title>Autobahnkarte mit Tropfen-Markern & Suche (Fix)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Leaflet CSS -->
@@ -43,24 +43,17 @@
 
     var geoLayer = L.geoJSON(geojsonFeatures, {
       pointToLayer: function(feature, latlng) {
-        var markerColor = getColor(feature.properties.sb);
-        return L.AwesomeMarkers.icon({
-          icon: 'road',
-          markerColor: markerColor,
-          prefix: 'fa'
-        }).addTo(map);
-      },
-      onEachFeature: function (feature, layer) {
         var icon = L.AwesomeMarkers.icon({
           icon: 'road',
           markerColor: getColor(feature.properties.sb),
           prefix: 'fa'
         });
-        var marker = L.marker(layer.getLatLng(), { icon: icon });
-        marker.bindPopup(feature.properties.popup);
-        marker.addTo(map);
+        return L.marker(latlng, { icon: icon });
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(feature.properties.popup);
       }
-    });
+    }).addTo(map);
 
     var searchControl = new L.Control.Search({
       layer: geoLayer,
