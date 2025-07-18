@@ -1,215 +1,86 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-    
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_70c5cf0289d0ec1ff51d67ccdfadce02 {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-            </style>
-        
-    
-                    <style>
-                        .foliumtooltip {
-                            
-                        }
-                       .foliumtooltip table{
-                            margin: auto;
-                        }
-                        .foliumtooltip tr{
-                            text-align: left;
-                        }
-                        .foliumtooltip th{
-                            padding: 2px; padding-right: 8px;
-                        }
-                    </style>
-            
-    
-                    <style>
-                        .foliumpopup {
-                            margin: auto;
-                        }
-                       .foliumpopup table{
-                            margin: auto;
-                        }
-                        .foliumpopup tr{
-                            text-align: left;
-                        }
-                        .foliumpopup th{
-                            padding: 2px; padding-right: 8px;
-                        }
-                    </style>
-            
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.css"/>
+  <meta charset="utf-8" />
+  <title>Autobahnkarte mit Suche</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Leaflet Search CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search@2.9.7/dist/leaflet-search.min.css" />
+
+  <style>
+    #map { height: 100vh; }
+  </style>
 </head>
 <body>
-    
-    
-            <div class="folium-map" id="map_70c5cf0289d0ec1ff51d67ccdfadce02" ></div>
-        
-</body>
-<script>
-    
-    
-            var map_70c5cf0289d0ec1ff51d67ccdfadce02 = L.map(
-                "map_70c5cf0289d0ec1ff51d67ccdfadce02",
-                {
-                    center: [51.78895507540378, 7.747443008361376],
-                    crs: L.CRS.EPSG3857,
-                    zoom: 7,
-                    zoomControl: true,
-                    preferCanvas: false,
-                }
-            );
+  <div id="map"></div>
 
-            
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        
-    
-            var tile_layer_48c460179d1faca744c0e29bde3dcf41 = L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_70c5cf0289d0ec1ff51d67ccdfadce02);
-        
-    
+  <!-- Leaflet Search JS -->
+  <script src="https://unpkg.com/leaflet-control-search@2.9.7/dist/leaflet-search.min.js"></script>
 
-        function geo_json_1e010e30addfb6f9450dba397488d152_onEachFeature(feature, layer) {
-            layer.on({
-            });
-        };
-        var geo_json_1e010e30addfb6f9450dba397488d152 = L.geoJson(null, {
-                onEachFeature: geo_json_1e010e30addfb6f9450dba397488d152_onEachFeature,
-            
-        });
+  <script>
+    var map = L.map('map').setView([51.5, 7.1], 7);
 
-        function geo_json_1e010e30addfb6f9450dba397488d152_add (data) {
-            geo_json_1e010e30addfb6f9450dba397488d152
-                .addData(data)
-                .addTo(map_70c5cf0289d0ec1ff51d67ccdfadce02);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Beispielhafte GeoJSON-Daten (du kannst sie aus deiner Tabelle generieren)
+    var geojsonFeatures = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "Allenstein",
+            "popup": "PWC Allenstein (A2)"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [7.03005, 51.55718]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "Ahler Mark",
+            "popup": "PWC Ahler Mark (A31)"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [7.08515, 52.09930]
+          }
         }
-            geo_json_1e010e30addfb6f9450dba397488d152_add({"features": [{"geometry": {"coordinates": [7.030050715806512, 51.55718868160622], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 458.8, "meisterei": "Dorsten", "name": "Allenstein", "richtung": "Gelsenkirchen"}, "type": "Feature"}, {"geometry": {"coordinates": [6.884734021549737, 51.5410020940773], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 469.4, "meisterei": "Dorsten", "name": "Schwarze Heide", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.085152528364234, 52.099306547852365], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 63.1, "meisterei": "Dorsten", "name": "Ahler Mark", "richtung": "Legden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.086392965713358, 52.10385541774269], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 63.7, "meisterei": "Dorsten", "name": "Averbeck", "richtung": "Legden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.051242282843308, 52.00554434676859], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 52.3, "meisterei": "Dorsten", "name": "B\u00fcrener Esch", "richtung": "Gescher"}, "type": "Feature"}, {"geometry": {"coordinates": [7.021395012084446, 51.890363343420006], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 39.4, "meisterei": "Dorsten", "name": "Hochmoor-Ost", "richtung": "Velen"}, "type": "Feature"}, {"geometry": {"coordinates": [6.921182003642665, 51.6837221247428], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 14.8, "meisterei": "Dorsten", "name": "Holsterhausen-West", "richtung": "Dorsten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.051339728443556, 52.002367798796925], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 52, "meisterei": "Dorsten", "name": "Holtwicker Mark", "richtung": "Gescher"}, "type": "Feature"}, {"geometry": {"coordinates": [6.966811663143834, 51.78303986333633], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 26.8, "meisterei": "Dorsten", "name": "Im Elwen", "richtung": "Lembeck"}, "type": "Feature"}, {"geometry": {"coordinates": [6.969067144684438, 51.783421356467805], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 26.8, "meisterei": "Dorsten", "name": "Kalter Bach", "richtung": "Lembeck"}, "type": "Feature"}, {"geometry": {"coordinates": [7.139893399484148, 52.224546686038515], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 77.8, "meisterei": "Dorsten", "name": "Lau Brechte", "richtung": "Ochtrup"}, "type": "Feature"}, {"geometry": {"coordinates": [6.919897786819924, 51.683808003411], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 14.8, "meisterei": "Dorsten", "name": "L\u00fcningskamp", "richtung": "Dorsten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.139194338188519, 52.225284103071445], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 77.8, "meisterei": "Dorsten", "name": "Wester Mark", "richtung": "Ochtrup"}, "type": "Feature"}, {"geometry": {"coordinates": [6.9333770804236154, 51.631389844101506], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 8.67, "meisterei": "Dorsten", "name": "Breilsbach", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.021395012084446, 51.890363343420006], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 39.4, "meisterei": "Dorsten", "name": "Hochmoor-Ost", "richtung": "Velen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.023692457071136, 51.90004250742439], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 40.3, "meisterei": "Dorsten", "name": "Hochmoor-West", "richtung": "Velen"}, "type": "Feature"}, {"geometry": {"coordinates": [6.966722719756136, 51.778307833587014], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 26.65, "meisterei": "Dorsten", "name": "Kalter Bach", "richtung": "Lembeck"}, "type": "Feature"}, {"geometry": {"coordinates": [6.978168501722269, 51.800218429380934], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Gelsenkirchen", "km": 28.7, "meisterei": "Dorsten", "name": "Wessendorfer Weg", "richtung": "Reken"}, "type": "Feature"}, {"geometry": {"coordinates": [7.275224341920699, 51.55832989430756], "type": "Point"}, "properties": {"BAB": "A42", "SB": "Gelsenkirchen", "km": 52.3, "meisterei": "Gelsenkirchen", "name": "Holthauser Bruch", "richtung": "Herne-B\u00f6rning"}, "type": "Feature"}, {"geometry": {"coordinates": [7.274385704489449, 51.55920910650003], "type": "Point"}, "properties": {"BAB": "A42", "SB": "Gelsenkirchen", "km": 52.2, "meisterei": "Gelsenkirchen", "name": "Lusebrink", "richtung": "Herne-B\u00f6rning"}, "type": "Feature"}, {"geometry": {"coordinates": [8.633397575822098, 52.01950482346033], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 324.5, "meisterei": "Herford", "name": "Br\u00f6nninghausen", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [8.933848570333609, 52.21099589193039], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 291, "meisterei": "Herford", "name": "Fuchsgrund", "richtung": "Minden"}, "type": "Feature"}, {"geometry": {"coordinates": [8.72042971515957, 52.10210620407599], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 313.1, "meisterei": "Herford", "name": "Herford -S\u00fcd", "richtung": "Herford"}, "type": "Feature"}, {"geometry": {"coordinates": [8.719550486274617, 52.102521678698395], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 313.1, "meisterei": "Herford", "name": "Herford Nord", "richtung": "Herford"}, "type": "Feature"}, {"geometry": {"coordinates": [8.931109682688712, 52.21117623260293], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 291, "meisterei": "Herford", "name": "L\u00f6wenburg", "richtung": "Minden"}, "type": "Feature"}, {"geometry": {"coordinates": [8.604603606196102, 51.967728180945144], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 331.5, "meisterei": "Herford", "name": "Bullerbach", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [8.57162316641096, 51.95556800650164], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 333.5, "meisterei": "Herford", "name": "Industriestra\u00dfe", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [8.615675783841022, 51.97997163109804], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 329.3, "meisterei": "Herford", "name": "L\u00e4mmershagen", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [8.743091801251435, 52.20318408686363], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Gelsenkirchen", "km": 125, "meisterei": "Herford", "name": "Haubach", "richtung": "L\u00f6hne"}, "type": "Feature"}, {"geometry": {"coordinates": [7.431251645553485, 51.582268633122204], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 429.7, "meisterei": "Kamen", "name": "Kleine Herrenthey", "richtung": "Do.-Brechten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.735605430283825, 51.60641433895037], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 407.7, "meisterei": "Kamen", "name": "Kolberg", "richtung": "B\u00f6nen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.735605430283825, 51.60641433895037], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 407.7, "meisterei": "Kamen", "name": "Kolberg", "richtung": "Kamen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.587900742705201, 51.589555644046385], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 418.1, "meisterei": "Kamen", "name": "Paschheide", "richtung": "Kamen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.7920929870894655, 51.5246485090411], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 137.9, "meisterei": "Kamen", "name": "Buchenhain", "richtung": "Unna"}, "type": "Feature"}, {"geometry": {"coordinates": [7.792112615881965, 51.52539329584079], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 138, "meisterei": "Kamen", "name": "Gr\u00fcntal", "richtung": "Unna"}, "type": "Feature"}, {"geometry": {"coordinates": [7.737315463188329, 51.52914346336526], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 141.9, "meisterei": "Kamen", "name": "L\u00fcner Grund", "richtung": "Unna"}, "type": "Feature"}, {"geometry": {"coordinates": [7.737023765582038, 51.52845822200194], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 141.8, "meisterei": "Kamen", "name": "M\u00fchlhauser Tal", "richtung": "Unna"}, "type": "Feature"}, {"geometry": {"coordinates": [7.685545610474849, 51.600186880123296], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Gelsenkirchen", "km": 325.519, "meisterei": "Kamen", "name": "Liedbach", "richtung": "Unna"}, "type": "Feature"}, {"geometry": {"coordinates": [7.8391970210726685, 51.62512156183438], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 400.13, "meisterei": "Kamen", "name": "Dreihausbach", "richtung": "Kamen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.423281513859628, 51.58436546672412], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 429.88, "meisterei": "Kamen", "name": "Dusbach", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.685543153433636, 51.60018573945424], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 411.147, "meisterei": "Kamen", "name": "Kamener Kreuz", "richtung": "Kamen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.680912239456675, 51.67493690978316], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Gelsenkirchen", "km": 307.4, "meisterei": "M\u00fcnster", "name": "An der Landwehr (Ost)", "richtung": "Werne"}, "type": "Feature"}, {"geometry": {"coordinates": [7.348882064350176, 51.881247024167685], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 75.6, "meisterei": "M\u00fcnster", "name": "Karthaus", "richtung": "D\u00fclmenBudern"}, "type": "Feature"}, {"geometry": {"coordinates": [7.348882064350176, 51.881247024167685], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 75.6, "meisterei": "M\u00fcnster", "name": "Karthaus", "richtung": "D\u00fclmenBuldern"}, "type": "Feature"}, {"geometry": {"coordinates": [7.323545439402705, 51.86901767876991], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 73.7, "meisterei": "M\u00fcnster", "name": "R\u00f6dder", "richtung": "D\u00fclmenBuldern"}, "type": "Feature"}, {"geometry": {"coordinates": [7.550987563395654, 51.941366638936145], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Gelsenkirchen", "km": 276.18, "meisterei": "M\u00fcnster", "name": "Meckelbach", "richtung": "M\u00fcnster"}, "type": "Feature"}, {"geometry": {"coordinates": [7.979475071318692, 51.72380654566395], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 384.2, "meisterei": "Oelde", "name": "Brunsberg", "richtung": "Beckum"}, "type": "Feature"}, {"geometry": {"coordinates": [8.457112091373485, 51.89598012744408], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 344.4, "meisterei": "Oelde", "name": "Heideplatz", "richtung": "Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.981194020603079, 51.72381429322406], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 384.2, "meisterei": "Oelde", "name": "Stettin", "richtung": "Beckum"}, "type": "Feature"}, {"geometry": {"coordinates": [8.45274141563491, 51.89333333203508], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 344.6, "meisterei": "Oelde", "name": "S\u00fcrenheide", "richtung": "G\u00fctersloh"}, "type": "Feature"}, {"geometry": {"coordinates": [8.07361954972917, 51.79215158079884], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 373.5, "meisterei": "Oelde", "name": "Vellern Nord", "richtung": "Beckum"}, "type": "Feature"}, {"geometry": {"coordinates": [8.531636819462152, 51.92985520166867], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 337, "meisterei": "Oelde", "name": "Gasselbach", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [8.295503431489497, 51.8454772320937], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 357.692, "meisterei": "Oelde", "name": "Merschgraben", "richtung": "Rheda Wiedenbr\u00fcck"}, "type": "Feature"}, {"geometry": {"coordinates": [8.50672614219495, 51.950864620528854], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 50.05, "meisterei": "Oelde", "name": "Detereiteiche", "richtung": "Oelde"}, "type": "Feature"}, {"geometry": {"coordinates": [8.504563836025108, 51.95633525174472], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 50.2, "meisterei": "Oelde", "name": "Friedrichsdorfer Stra\u00dfe", "richtung": "Oelde"}, "type": "Feature"}, {"geometry": {"coordinates": [8.513332011320562, 51.94551846750151], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 49.765, "meisterei": "Oelde", "name": "Niederheide", "richtung": "Oelde"}, "type": "Feature"}, {"geometry": {"coordinates": [8.492410035245719, 51.96907419646453], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 52.75, "meisterei": "Oelde", "name": "Sunderbach", "richtung": "Oelde"}, "type": "Feature"}, {"geometry": {"coordinates": [7.178408689190121, 51.58153781445886], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 448, "meisterei": "Recklinghausen", "name": "Hohenhorst", "richtung": "Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.334540707695284, 51.59964423203226], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 436.5, "meisterei": "Recklinghausen", "name": "Ickern", "richtung": "CastropRauxel"}, "type": "Feature"}, {"geometry": {"coordinates": [7.100830778259487, 51.56993398985957], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 453.5, "meisterei": "Recklinghausen", "name": "Resser Mark S\u00fcd", "richtung": "Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.178960384392605, 51.58044386291021], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 448, "meisterei": "Recklinghausen", "name": "Stuckenbusch", "richtung": "Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.171292387624354, 51.63873670178871], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 41.9, "meisterei": "Recklinghausen", "name": "Speckhorn Ost", "richtung": "Marl-Sinsen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.1698463532037655, 51.639055104208644], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 42.3, "meisterei": "Recklinghausen", "name": "Speckhorn West", "richtung": "Marl-Sinsen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.171292387624354, 51.63873670178871], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 41.9, "meisterei": "Recklinghausen", "name": "Speckhorn-Ost", "richtung": "Marl-Sinsen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.368674686474138, 51.53628393342806], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Gelsenkirchen", "km": 5.7, "meisterei": "Recklinghausen", "name": "Kirchlinde", "richtung": "Westerfilde"}, "type": "Feature"}, {"geometry": {"coordinates": [7.37001841612745, 51.53713841493942], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Gelsenkirchen", "km": 5.7, "meisterei": "Recklinghausen", "name": "Westerfilde", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.2050079631605115, 51.58426465463706], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 446.135, "meisterei": "Recklinghausen", "name": "Bochumer Stra\u00dfe", "richtung": "Recklinghausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.113130576515846, 51.569536425567414], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 452.7, "meisterei": "Recklinghausen", "name": "Emscherbruch", "richtung": "Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.292736016003933, 51.600910076325675], "type": "Point"}, "properties": {"BAB": "A2", "SB": "Gelsenkirchen", "km": 439.75, "meisterei": "Recklinghausen", "name": "Suderwicher Bach", "richtung": "Recklinghausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.188145251820331, 51.58265952304218], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 35.2, "meisterei": "Recklinghausen", "name": "AK Recklinghausen", "richtung": "Recklinghausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.174176375283636, 51.60856209880733], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 38.65, "meisterei": "Recklinghausen", "name": "Akkoallee", "richtung": "Recklinghausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.18509600597481, 51.59741569837268], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 37.2, "meisterei": "Recklinghausen", "name": "Am Stadion", "richtung": "Recklinghausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.171292387624354, 51.63873670178871], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 41.9, "meisterei": "Recklinghausen", "name": "Speckhorn Ost", "richtung": "Recklinghausen Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.1698463532037655, 51.639055104208644], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 41.3, "meisterei": "Recklinghausen", "name": "Speckhorn West", "richtung": "Recklinghausen Herten"}, "type": "Feature"}, {"geometry": {"coordinates": [7.181705010651994, 51.60436205470137], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Gelsenkirchen", "km": 37.98, "meisterei": "Recklinghausen", "name": "Wiesenstra\u00dfe", "richtung": "Emmerich am"}, "type": "Feature"}, {"geometry": {"coordinates": [7.147134826214616, 51.70486144470586], "type": "Point"}, "properties": {"BAB": "A52", "SB": "Gelsenkirchen", "km": 22.5, "meisterei": "Recklinghausen", "name": "AK Marl-Nord PW", "richtung": "Marl"}, "type": "Feature"}, {"geometry": {"coordinates": [8.485806697743582, 51.59502722478778], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 88.3, "meisterei": "Werl", "name": "Hellweg Nord", "richtung": "Geseke"}, "type": "Feature"}, {"geometry": {"coordinates": [8.019377393544081, 51.541861318197945], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 121.9, "meisterei": "Werl", "name": "Ostt\u00f6nnergrund", "richtung": "Werl"}, "type": "Feature"}, {"geometry": {"coordinates": [8.020088795929421, 51.540953985707205], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 121.9, "meisterei": "Werl", "name": "R\u00f6llingsergraben", "richtung": "Werl"}, "type": "Feature"}, {"geometry": {"coordinates": [8.405961622059559, 51.371310295718224], "type": "Point"}, "properties": {"BAB": "A46", "SB": "Gelsenkirchen", "km": 90.9, "meisterei": "Werl", "name": "Alfert", "richtung": "Bestwig"}, "type": "Feature"}, {"geometry": {"coordinates": [8.032179376935208, 51.432605597899105], "type": "Point"}, "properties": {"BAB": "A46", "SB": "Gelsenkirchen", "km": 60.8, "meisterei": "Werl", "name": "Bruchhauser H\u00f6he", "richtung": "Arnsberg"}, "type": "Feature"}, {"geometry": {"coordinates": [8.401751563606075, 51.37031548821317], "type": "Point"}, "properties": {"BAB": "A46", "SB": "Gelsenkirchen", "km": 90.6, "meisterei": "Werl", "name": "Sengenberg", "richtung": "Bestwig"}, "type": "Feature"}, {"geometry": {"coordinates": [8.043298231251283, 51.43046068661674], "type": "Point"}, "properties": {"BAB": "A46", "SB": "Gelsenkirchen", "km": 60, "meisterei": "Werl", "name": "Wannetal", "richtung": "Neheim H\u00fcsten"}, "type": "Feature"}, {"geometry": {"coordinates": [8.484068040575542, 51.59549022298359], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 88.555, "meisterei": "Werl", "name": "Hellweg Nord", "richtung": "Geseke"}, "type": "Feature"}, {"geometry": {"coordinates": [8.16419524089046, 51.36119189211504], "type": "Point"}, "properties": {"BAB": "A46", "SB": "Gelsenkirchen", "km": 73.8, "meisterei": "Werl", "name": "Tunnel Olpe PW", "richtung": "Meschede"}, "type": "Feature"}, {"geometry": {"coordinates": [8.685673516340636, 51.8384462099285], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 30.3, "meisterei": "W\u00fcnnenberg", "name": "H\u00f6velsenneOst", "richtung": "H\u00f6velhof"}, "type": "Feature"}, {"geometry": {"coordinates": [8.683112793692075, 51.83893622475892], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 30.3, "meisterei": "W\u00fcnnenberg", "name": "H\u00f6velsenneWest", "richtung": "H\u00f6velhof"}, "type": "Feature"}, {"geometry": {"coordinates": [8.72472360658907, 51.62958289680812], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 6.2, "meisterei": "W\u00fcnnenberg", "name": "Letzter Heller-Ost", "richtung": "Paderb.Borchen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.724852521371808, 51.627066905459166], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 5.8, "meisterei": "W\u00fcnnenberg", "name": "Letzter Heller-West", "richtung": "Paderb.Borchen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.693763695304757, 51.75814185203333], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 21, "meisterei": "W\u00fcnnenberg", "name": "Lippesee-Ost", "richtung": "Schlo\u00df"}, "type": "Feature"}, {"geometry": {"coordinates": [8.692977695999998, 51.75784396372847], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 20.9, "meisterei": "W\u00fcnnenberg", "name": "LippeseeWest", "richtung": "Schlo\u00df"}, "type": "Feature"}, {"geometry": {"coordinates": [8.80020075931948, 51.55443619799528], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 65.5, "meisterei": "W\u00fcnnenberg", "name": "Sintfeld-Nord", "richtung": "Landesgrenze"}, "type": "Feature"}, {"geometry": {"coordinates": [8.799317834227352, 51.55384455558655], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 65.5, "meisterei": "W\u00fcnnenberg", "name": "Sintfeld-S\u00fcd", "richtung": "Landesgrenze"}, "type": "Feature"}, {"geometry": {"coordinates": [8.683112793692075, 51.83893622475892], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 30.3, "meisterei": "W\u00fcnnenberg", "name": "H\u00f6velsenneWest", "richtung": "H\u00f6velhof"}, "type": "Feature"}, {"geometry": {"coordinates": [8.724015937980178, 51.63050748835596], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Gelsenkirchen", "km": 6.254, "meisterei": "W\u00fcnnenberg", "name": "Letzter Heller", "richtung": "Paderb.Borchen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.932849443448962, 51.51914200775275], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Gelsenkirchen", "km": 55.25, "meisterei": "W\u00fcnnenberg", "name": "Klingelbachtal", "richtung": "Marsberg"}, "type": "Feature"}, {"geometry": {"coordinates": [8.032260403478451, 52.41464506496351], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 209.6, "meisterei": "Holdorf", "name": "Ahrensfeld Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.03028151771897, 52.4223394263553], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 208.6, "meisterei": "Holdorf", "name": "Ahrensfeld West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [8.173695235603368, 52.70957932544185], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 174.6, "meisterei": "Holdorf", "name": "Bakumer Wiesen Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.172145205011578, 52.71459318936348], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 174, "meisterei": "Holdorf", "name": "Bakumer Wiesen West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [8.19866276234492, 52.78110317729623], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 165.9, "meisterei": "Holdorf", "name": "Cappeln Hagelage Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.199241193510492, 52.78516625989562], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 166.3, "meisterei": "Holdorf", "name": "Cappeln Hagelage West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.959959106750194, 52.31876003655189], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 223.02, "meisterei": "Holdorf", "name": "Hasetal Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.958730698896255, 52.31983153977091], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 223.02, "meisterei": "Holdorf", "name": "Hasetal West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [8.125692840984481, 52.61203513790226], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 186, "meisterei": "Holdorf", "name": "Langwege Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.126016593306122, 52.6143201647236], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 185.8, "meisterei": "Holdorf", "name": "Langwege West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [8.200924908104485, 52.77969227920603], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 166.4, "meisterei": "Holdorf", "name": "Vechta Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.197683838669633, 52.782958122862965], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 166.1, "meisterei": "Holdorf", "name": "Vechta West", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.959959106750194, 52.31876003655189], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 223.02, "meisterei": "Holdorf", "name": "Hasetal Ost", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.169505372811387, 52.78832348075036], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 146, "meisterei": "Lathen", "name": "Dankern (Ost)", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.1734451842966855, 52.79690179084643], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 147, "meisterei": "Lathen", "name": "Hebel (West)", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.192241015777366, 52.63482250557951], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 125.5, "meisterei": "Lathen", "name": "Heseper Moor", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.189904807693166, 52.63522587796118], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 128.5, "meisterei": "Lathen", "name": "Heseper Moor", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.239624415912415, 53.086041986322584], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 180.5, "meisterei": "Lathen", "name": "Olle Rheen", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.241704545001918, 53.086085347837724], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 180.5, "meisterei": "Lathen", "name": "Olle Rheen (Ost)", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.2546462591036125, 52.92296217618518], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 162.2, "meisterei": "Lathen", "name": "Walchum Ost", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.2546462591036125, 52.92296217618518], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 164.2, "meisterei": "Lathen", "name": "Walchum Ost", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.761302364032243, 52.17004065261995], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 245.7, "meisterei": "Lengerich", "name": "Buddenkuhle (West)", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.694516338422467, 52.110579908400105], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 253.7, "meisterei": "Lengerich", "name": "H\u00fcttruper Heide (West)", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.676528390111108, 52.09980734415312], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 255.5, "meisterei": "Lengerich", "name": "Krone Heide (Ost)", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.657177498636779, 52.0925552415574], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 257, "meisterei": "Lengerich", "name": "Maestruper Brook", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.603549690182074, 52.03193110688687], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 264.8, "meisterei": "Lengerich", "name": "Plugger Heide (Ost)", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.602059948211559, 52.032271254595145], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 264.8, "meisterei": "Lengerich", "name": "Sandrup (West)", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.7811743301158005, 52.1798565636764], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Osnabr\u00fcck", "km": 243.9, "meisterei": "Lengerich", "name": "Settel (Ost)", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.201444891881296, 52.22521710096396], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 84.955, "meisterei": "Osnabr\u00fcck", "name": "Rottkamp Nord", "richtung": "Amsterdam"}, "type": "Feature"}, {"geometry": {"coordinates": [8.201180649333931, 52.224164607788204], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 84.955, "meisterei": "Osnabr\u00fcck", "name": "Rottkamp S\u00fcd", "richtung": "Bad Oeynhausen"}, "type": "Feature"}, {"geometry": {"coordinates": [8.156225702036565, 52.17069032463952], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Osnabr\u00fcck", "km": 78.3, "meisterei": "Osnabr\u00fcck", "name": "Teuteburger Wald Ost", "richtung": "Osnabr\u00fcck"}, "type": "Feature"}, {"geometry": {"coordinates": [8.15551621227705, 52.16988388643685], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Osnabr\u00fcck", "km": 78.3, "meisterei": "Osnabr\u00fcck", "name": "Teuteburger Wald West", "richtung": "Bad W\u00fcnnenberg"}, "type": "Feature"}, {"geometry": {"coordinates": [8.15551621227705, 52.16988388643685], "type": "Point"}, "properties": {"BAB": "A33", "SB": "Osnabr\u00fcck", "km": 78.3, "meisterei": "Osnabr\u00fcck", "name": "Teuteburger Wald West", "richtung": "Bielefeld"}, "type": "Feature"}, {"geometry": {"coordinates": [7.535457625200552, 52.291171643357046], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 36.72, "meisterei": "Sch\u00fcttorf", "name": "Rheine", "richtung": NaN}, "type": "Feature"}, {"geometry": {"coordinates": [7.0449748858707535, 52.31318583082276], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 0.1, "meisterei": "Sch\u00fcttorf", "name": "Springbiel", "richtung": NaN}, "type": "Feature"}, {"geometry": {"coordinates": [7.188081529587837, 52.62718415117778], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 127.5, "meisterei": "Sch\u00fcttorf", "name": "Lingen", "richtung": NaN}, "type": "Feature"}, {"geometry": {"coordinates": [7.237678662182854, 52.88800620495188], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 158.1, "meisterei": "Sch\u00fcttorf", "name": "Ochtrup", "richtung": NaN}, "type": "Feature"}, {"geometry": {"coordinates": [7.408808743880771, 52.3383402014468], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 26, "meisterei": "Sch\u00fcttorf", "name": "Emstal Nord", "richtung": "Amsterdam"}, "type": "Feature"}, {"geometry": {"coordinates": [7.39848692856126, 52.341443144757505], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 25.3, "meisterei": "Sch\u00fcttorf", "name": "Emstal S\u00fcd", "richtung": "Bad Oeynhausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.39848692856126, 52.341443144757505], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 25.3, "meisterei": "Sch\u00fcttorf", "name": "Emstal S\u00fcd", "richtung": "Osnabr\u00fcck"}, "type": "Feature"}, {"geometry": {"coordinates": [7.105719967398202, 52.336497437183816], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 5, "meisterei": "Sch\u00fcttorf", "name": "Waldseite Nord", "richtung": "Amsterdam"}, "type": "Feature"}, {"geometry": {"coordinates": [7.107513802228964, 52.335397296255415], "type": "Point"}, "properties": {"BAB": "A30", "SB": "Osnabr\u00fcck", "km": 5, "meisterei": "Sch\u00fcttorf", "name": "Waldseite S\u00fcd", "richtung": "Bad Oeynhausen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.246516278993783, 52.39000921958845], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 100, "meisterei": "Sch\u00fcttorf", "name": "Bergler Feld Ost", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.245758887949393, 52.39396603563006], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 99.8, "meisterei": "Sch\u00fcttorf", "name": "Bergler Feld West", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [7.2194713546253455, 52.28545882836756], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 86.9, "meisterei": "Sch\u00fcttorf", "name": "Forsthaus (Ost)", "richtung": "Emden"}, "type": "Feature"}, {"geometry": {"coordinates": [7.198513822641545, 52.28145336512496], "type": "Point"}, "properties": {"BAB": "A31", "SB": "Osnabr\u00fcck", "km": 85.3, "meisterei": "Sch\u00fcttorf", "name": "Gut Friedrichstal (West)", "richtung": "Bottrop"}, "type": "Feature"}, {"geometry": {"coordinates": [8.287572474233317, 50.70892130589334], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 139.7, "meisterei": "Ehringshausen", "name": "Hirschkopf", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [8.232686174156987, 50.746205898963346], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 132.7, "meisterei": "Ehringshausen", "name": "Auf dem Bon", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [8.280571145883307, 50.72464007845992], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 137.6, "meisterei": "Ehringshausen", "name": "Gaulskopf", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [8.518020796580826, 50.59177036304653], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 164.6, "meisterei": "Ehringshausen", "name": "Kochsgrund", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [8.234921207366149, 50.74457623527494], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 133, "meisterei": "Ehringshausen", "name": "Schlierberg", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [8.52071101241982, 50.59179387904643], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 164.7, "meisterei": "Ehringshausen", "name": "Vogelsang", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [8.34909957678247, 50.62562246548204], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 151.8, "meisterei": "Ehringshausen", "name": "Volkersbach", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.845854907656982, 50.96296281850303], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 92, "meisterei": "Freudenberg", "name": "Br\u00fcner H\u00f6he", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.882919640368127, 50.93378637853049], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 96.5, "meisterei": "Freudenberg", "name": "L\u00f6ffelberg", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.926856027417847, 50.89248303151096], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 102.97, "meisterei": "Freudenberg", "name": "Am Heisbergbach", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.926856027417847, 50.89248303151096], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 102.97, "meisterei": "Freudenberg", "name": "Am Heissbergbach", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.822990835243894, 51.03064891813409], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 84.184, "meisterei": "Freudenberg", "name": "Rosenthal", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.310288725124127, 51.32715622010377], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 359, "meisterei": "Hagen", "name": "Bruchm\u00fchle", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.413936139674496, 51.37219654233028], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 349.1, "meisterei": "Hagen", "name": "Eichenkamp", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [7.421229821935569, 51.37392375232392], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 349.4, "meisterei": "Hagen", "name": "Funkenhausen", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.316096284413347, 51.328712466329954], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 358.5, "meisterei": "Hagen", "name": "Klosterholz", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.275363572008472, 51.34970275019487], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Wuppertal", "km": 5.4, "meisterei": "Hagen", "name": "Hagelsiepen", "richtung": "M\u00fcnster"}, "type": "Feature"}, {"geometry": {"coordinates": [7.270372094773824, 51.340456378716276], "type": "Point"}, "properties": {"BAB": "A43", "SB": "Wuppertal", "km": 4.2, "meisterei": "Hagen", "name": "Scherenberg", "richtung": "Wuppertal"}, "type": "Feature"}, {"geometry": {"coordinates": [7.596576678397047, 51.46808142078203], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 332.98, "meisterei": "Hagen", "name": "Gehrenbach", "richtung": "Bremen"}, "type": "Feature"}, {"geometry": {"coordinates": [7.43391052258953, 51.37957930597202], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 348.621, "meisterei": "Hagen", "name": "Hagen West I (Nordseite)", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.43391052258953, 51.37957930597202], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 348.621, "meisterei": "Hagen", "name": "Hagen West II (S\u00fcdseite)", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.257174794961561, 51.28978435764074], "type": "Point"}, "properties": {"BAB": "A1", "SB": "Wuppertal", "km": 364.996, "meisterei": "Hagen", "name": "Langerfeld II", "richtung": "K\u00f6ln"}, "type": "Feature"}, {"geometry": {"coordinates": [9.369115613869377, 51.28489591785719], "type": "Point"}, "properties": {"BAB": "A44", "SB": "Wuppertal", "km": 11.1, "meisterei": "Hagen", "name": "Tiefenbach", "richtung": "Bochum"}, "type": "Feature"}, {"geometry": {"coordinates": [7.394301659604335, 51.47566330037948], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 13.6, "meisterei": "Hagen", "name": "Herbede", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.42006903349797, 51.45926825163663], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 16.8, "meisterei": "Hagen", "name": "Kruckeler Bach", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.549903084276441, 51.410805753803686], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 27.8, "meisterei": "Hagen", "name": "Schwerte-Ergste", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.51126954513195, 51.44072624176441], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 23.14, "meisterei": "Hagen", "name": "Wannebach I", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.537263447279456, 51.431789545411036], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 25.2, "meisterei": "Hagen", "name": "Wannebach II", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.665613859874598, 51.152962282319464], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 63.4, "meisterei": "L\u00fcdenscheid", "name": "Baberg", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.696748711585977, 51.074834399442466], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 73.3, "meisterei": "L\u00fcdenscheid", "name": "Brachtsiepen", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.657734938543781, 51.19014385563422], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 59, "meisterei": "L\u00fcdenscheid", "name": "Brenscheid", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.669022477311095, 51.15285615312321], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 63.6, "meisterei": "L\u00fcdenscheid", "name": "Dr\u00f6genp\u00fctt", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.665387827347512, 51.11879518978753], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 67.7, "meisterei": "L\u00fcdenscheid", "name": "Duwelsiepen", "richtung": "Frankfurt"}, "type": "Feature"}, {"geometry": {"coordinates": [7.6367719307393696, 51.245003456372], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 51.2, "meisterei": "L\u00fcdenscheid", "name": "Hunscheid", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.696494747005073, 51.07886245196961], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 72.7, "meisterei": "L\u00fcdenscheid", "name": "Neuenschmiede", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.601037348395028, 51.271246077674896], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 47.3, "meisterei": "L\u00fcdenscheid", "name": "Rehweg", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.668789071607903, 51.12291782768406], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 67.2, "meisterei": "L\u00fcdenscheid", "name": "Rothenstein", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.659457295385844, 51.18963382040551], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 59, "meisterei": "L\u00fcdenscheid", "name": "Schwiendahl", "richtung": "Dortmund"}, "type": "Feature"}, {"geometry": {"coordinates": [7.674948331781827, 51.14413258474918], "type": "Point"}, "properties": {"BAB": "A45", "SB": "Wuppertal", "km": 64.635, "meisterei": "L\u00fcdenscheid", "name": "Schleipbach", "richtung": "Frankfurt"}, "type": "Feature"}], "type": "FeatureCollection"});
+      ]
+    };
 
-        
-    
-    geo_json_1e010e30addfb6f9450dba397488d152.bindTooltip(
-    function(layer){
-    let div = L.DomUtil.create('div');
-    
-    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
-    let fields = ["name"];
-    let aliases = ["name"];
-    let table = '<table>' +
-        String(
-        fields.map(
-        (v,i)=>
-        `<tr>
-            <th>${aliases[i]}</th>
-            
-            <td>${handleObject(layer.feature.properties[v])}</td>
-        </tr>`).join(''))
-    +'</table>';
-    div.innerHTML=table;
-    
-    return div
-    }
-    ,{"className": "foliumtooltip", "sticky": true});
-                     
-    
-    geo_json_1e010e30addfb6f9450dba397488d152.bindPopup(
-    function(layer){
-    let div = L.DomUtil.create('div');
-    
-    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
-    let fields = ["name", "BAB", "km", "richtung", "SB", "meisterei"];
-    let aliases = ["Name", "BAB", "km", "Richtung", "SB", "Meisterei"];
-    let table = '<table>' +
-        String(
-        fields.map(
-        (v,i)=>
-        `<tr>
-            <th>${aliases[i].toLocaleString()}</th>
-            
-            <td>${handleObject(layer.feature.properties[v]).toLocaleString()}</td>
-        </tr>`).join(''))
-    +'</table>';
-    div.innerHTML=table;
-    
-    return div
-    }
-    ,{"className": "foliumpopup"});
-                     
-    
-            var geo_json_1e010e30addfb6f9450dba397488d152searchControl = new L.Control.Search({
-                layer: geo_json_1e010e30addfb6f9450dba397488d152,
-                
-                propertyName: 'name',
-                
-                collapsed: false,
-                textPlaceholder: 'Standort suchen...',
-                position:'topright',                
-            
-                initial: false,
-                
-                hideMarkerOnCollapse: true
-            
-                });
-                geo_json_1e010e30addfb6f9450dba397488d152searchControl.on('search:locationfound', function(e) {
-                    geo_json_1e010e30addfb6f9450dba397488d152.setStyle(function(feature){
-                        return feature.properties.style
-                    })
-                    
-                    if(e.layer._popup)
-                        e.layer.openPopup();
-                })
-                geo_json_1e010e30addfb6f9450dba397488d152searchControl.on('search:collapsed', function(e) {
-                        geo_json_1e010e30addfb6f9450dba397488d152.setStyle(function(feature){
-                            return feature.properties.style
-                    });
-                });
-            map_70c5cf0289d0ec1ff51d67ccdfadce02.addControl( geo_json_1e010e30addfb6f9450dba397488d152searchControl );
+    var geoLayer = L.geoJSON(geojsonFeatures, {
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(feature.properties.popup);
+      }
+    }).addTo(map);
 
-        
-    
-            var layer_control_38d6a97c3527e0e3f5016823b979c9b5 = {
-                base_layers : {
-                    "openstreetmap" : tile_layer_48c460179d1faca744c0e29bde3dcf41,
-                },
-                overlays :  {
-                    "Standorte (Suchbar)" : geo_json_1e010e30addfb6f9450dba397488d152,
-                },
-            };
-            L.control.layers(
-                layer_control_38d6a97c3527e0e3f5016823b979c9b5.base_layers,
-                layer_control_38d6a97c3527e0e3f5016823b979c9b5.overlays,
-                {"autoZIndex": true, "collapsed": true, "position": "topright"}
-            ).addTo(map_70c5cf0289d0ec1ff51d67ccdfadce02);
-        
-</script>
+    var searchControl = new L.Control.Search({
+      layer: geoLayer,
+      propertyName: 'name',
+      marker: false,
+      moveToLocation: function(latlng, title, map) {
+        map.setView(latlng, 14); 
+      }
+    });
+
+    searchControl.on('search:locationfound', function(e) {
+      e.layer.openPopup();
+    });
+
+    map.addControl(searchControl);
+  </script>
+</body>
 </html>
